@@ -1,0 +1,43 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class EcomSignUp {
+
+ public static void main(String[] args) {
+ 
+  WebDriverManager.chromedriver().setup();
+  WebDriver driver=new ChromeDriver();
+  String URL="https://www.jiomart.com/";
+
+  driver.get(URL);
+  driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
+  driver.manage().window().maximize();
+  
+  //Click on Sign in
+  driver.findElement(By.linkText("Sign in")).click();
+
+  //Enter email address
+  driver.findElement(By.cssSelector("[name='Enter Mobile number']")).sendKeys("8982335256");
+  
+  // Enter details
+  driver.findElement(By.id("fname_input")).sendKeys("Test User");
+  driver.findElement(By.id("lastname_input")).sendKeys("Vsoft");
+  driver.findElement(By.id("name_input")).sendKeys("tanyasaxena52@gmail.com");
+  driver.findElement(By.id("id_input_")).sendKeys(" ");
+  driver.findElement(By.linkText("Get Started")).click();
+
+  // Validate that user has created
+  if(sign_in_text.contains("Vsoft")) {
+   System.out.println("User Verified,Test case Passed");
+  }
+  else {
+   System.out.println("User Verification Failed,Test case Failed");
+  }
+ }
+}
